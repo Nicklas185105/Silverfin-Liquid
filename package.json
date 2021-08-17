@@ -1,0 +1,36 @@
+{
+	"name": "silverfin-liquid",
+	"displayName": "Silverfin Liquid",
+	"description": "Syntax Highlighting for Silverfin Templating Language - Liquid",
+	"version": "0.0.1",
+	"publisher": "NicklasLydersen",
+	"engines": {
+		"vscode": "^1.0.0"
+	},
+	"categories": [
+		"Programming Languages"
+	],
+	"contributes": {
+		"languages": [
+			{
+				"id": "liquid",
+				"aliases": [
+					"Silverfin Templating Language",
+					"stl",
+					"liquid"
+				],
+				"extensions": [
+					".liquid"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "liquid",
+				"scopeName": "source.stl",
+				"path": "./syntaxes/stl.tmLanguage.json"
+			}
+		]
+	}
+}
