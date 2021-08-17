@@ -2,7 +2,7 @@
 	"name": "silverfin-liquid",
 	"displayName": "Silverfin Liquid",
 	"description": "Syntax Highlighting for Silverfin Templating Language - Liquid",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "NicklasLydersen",
 	"repository": {
 		"url": "https://github.com/Nicklas185105/Silverfin-Liquid"

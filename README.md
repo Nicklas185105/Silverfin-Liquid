@@ -13,3 +13,7 @@ Users appreciate release notes as you update your extension.
 Initial release of Silverfin Templating Language - Liquid.
 
 Added Syntax Highlighting.
+
+### 0.0.2
+
+Added code snippet for Comment and Assign
