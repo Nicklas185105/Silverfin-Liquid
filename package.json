@@ -4,11 +4,15 @@
 	"description": "Syntax Highlighting for Silverfin Templating Language - Liquid",
 	"version": "0.0.1",
 	"publisher": "NicklasLydersen",
+	"repository": {
+		"url": "https://github.com/Nicklas185105/Silverfin-Liquid"
+	},
 	"engines": {
 		"vscode": "^1.0.0"
 	},
 	"categories": [
-		"Programming Languages"
+		"Programming Languages",
+		"Snippets"
 	],
 	"contributes": {
 		"languages": [
@@ -23,6 +27,12 @@
 					".liquid"
 				],
 				"configuration": "./language-configuration.json"
+			}
+		],
+		"snippets": [
+			{
+				"language": "liquid",
+				"path": "./snippets/snippets.code-snippets"
 			}
 		],
 		"grammars": [

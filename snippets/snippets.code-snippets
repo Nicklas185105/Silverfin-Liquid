@@ -1,0 +1,16 @@
+{
+	"Comment": {
+		"prefix": "comment",
+		"body": [
+			"{% comment %}$0{% endcomment %}"
+		],
+		"description": "A comment."
+	},
+	"Assign": {
+		"prefix": "assign",
+		"body": [
+			"{% assign $1 = $2 %}"
+		],
+		"description": "Assign"
+	}
+}
