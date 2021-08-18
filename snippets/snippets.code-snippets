@@ -2,15 +2,80 @@
 	"Comment": {
 		"prefix": "comment",
 		"body": [
-			"{% comment %}$0{% endcomment %}"
+			"{% comment %}${1:your comment}{% endcomment %}"
 		],
-		"description": "A comment."
+		"description": [
+			"Comments are an easy way to let other programmers\nknow what you are doing without displaying code on the front end.\n",
+			"You always need an opening and closing comment to\nindicate which block should not be displayed.\n",
+			"Any text within the opening and closing comment blocks\nwill not be in output and any code within the comment blocks will not be executed."
+		]
+	},
+	"Input Comment": {
+		"prefix": "ic",
+		"body": [
+			"{% ic %}${1:content}{% endic %}"
+		],
+		"description": "Displaying something in input view and not\nin export view, can be done with an input comment."
+	},
+	"Non Input Comment": {
+		"prefix": "nic",
+		"body": [
+			"{% nic %}${1:content}{% endnic %}"
+		],
+		"description": "Displaying something in export view and\nnot in input view, can be done with a non input comment."
 	},
 	"Assign": {
 		"prefix": "assign",
 		"body": [
-			"{% assign $1 = $2 %}"
+			"{% assign ${1:variable} = ${2:content} %}"
 		],
-		"description": "Assign"
+		"description": [
+			"Assign tag is used to assign a value to a variable.\n",
+			"When you assign a value to a variable, you will create a string."
+		]
+	},
+	"Capture": {
+		"prefix": "capture",
+		"body": [
+			"{% capture ${1:variable} %}${2:content}{% endcapture %}"
+		],
+		"description": [
+			"With this function you capture the string inside of\nthe opening and closing tags and assigns it to a variable.\n",
+			"Variables that you create using capture are stored as strings."
+		]
+	},
+	"Set Translation": {
+		"prefix": "t=",
+		"body": [
+			"{% t= \"${1:key}\"",
+			"\ten:\"${2:en translation}\"",
+			"\tda:\"${3:da translation}\"",
+			"%}"
+		],
+		"description": [
+			"To make sure that the content of the template is translated\nin different languages, you need to set translation by:\n",
+			" 1. indicating the language to which you would like to translate your text; and",
+			" 2. adding text in that particular language."
+		]
+	},
+	"Get Translation": {
+		"prefix": "t",
+		"body": [
+			"{% t \"${1:key}\" %}"
+		],
+		"description": [
+			"To execute the translation, the word/content\nshould be placed in brackets with the letter 't' in front of it."
+		]
+	},
+	"Input": {
+		"prefix": "input",
+		"body": [
+			"{% input custom.${1:namespace}.${2:key} %}"
+		],
+		"description": [
+			"We use an input tag to allow users to enter information in\nan input field and to store this information in a custom drop.\n",
+			"Drops can be seen as a \"database\" and are used to access\ndata from Silverfin.\n",
+			"To reference an item in a custom drop, you always need\n\"a namespace\" and \"a key\"."
+		]
 	}
 }
