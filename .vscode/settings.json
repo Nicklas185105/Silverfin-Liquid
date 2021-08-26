@@ -1,9 +1,17 @@
 {
 	"cSpell.words": [
+		"Forloop",
 		"Templating",
 		"endcapture",
+		"endcase",
 		"endcomment",
+		"endfor",
+		"endfori",
 		"endic",
-		"endnic"
+		"endifi",
+		"endnic",
+		"endunless",
+		"fori",
+		"rindex"
 	]
 }

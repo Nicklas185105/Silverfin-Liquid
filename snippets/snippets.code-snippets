@@ -10,6 +10,10 @@
 			"Any text within the opening and closing comment blocks\nwill not be in output and any code within the comment blocks will not be executed."
 		]
 	},
+	"End Comment": {
+		"prefix": "endcomment",
+		"body": "{% endcomment %}"
+	},
 	"Input Comment": {
 		"prefix": "ic",
 		"body": [
@@ -17,12 +21,20 @@
 		],
 		"description": "Displaying something in input view and not\nin export view, can be done with an input comment."
 	},
+	"End Input Comment": {
+		"prefix": "endic",
+		"body": "{% endic %}"
+	},
 	"Non Input Comment": {
 		"prefix": "nic",
 		"body": [
 			"{% nic %}${1:content}{% endnic %}"
 		],
 		"description": "Displaying something in export view and\nnot in input view, can be done with a non input comment."
+	},
+	"End Non Input Comment": {
+		"prefix": "endnic",
+		"body": "{% endnic %}"
 	},
 	"Assign": {
 		"prefix": "assign",
@@ -43,6 +55,10 @@
 			"With this function you capture the string inside of\nthe opening and closing tags and assigns it to a variable.\n",
 			"Variables that you create using capture are stored as strings."
 		]
+	},
+	"End Capture": {
+		"prefix": "endcapture",
+		"body": "{% endcapture %}"
 	},
 	"Set Translation": {
 		"prefix": "t=",
@@ -77,5 +93,288 @@
 			"Drops can be seen as a \"database\" and are used to access\ndata from Silverfin.\n",
 			"To reference an item in a custom drop, you always need\n\"a namespace\" and \"a key\"."
 		]
+	},
+	"As Text": {
+		"prefix": "as:text",
+		"body": "as:text",
+		"description": "When using the \"as text\", a standard string field is shown as a text field."
+	},
+	"As Currency": {
+		"prefix": "as:currency",
+		"body": "as:currency",
+		"description": "When using the \"as currency\", a standard string field is shown as a numeric value with decimals."
+	},
+	"As Integer": {
+		"prefix": "as:integer",
+		"body": "as:integer",
+		"description": "When using the \"as percentage\", a standard string field is shown as a percentage value."
+	},
+	"Input Precision Attribute": {
+		"prefix": "precision:",
+		"body": "precision:${1:1}",
+		"description": "Defines the amount of decimals stored for percentage values"
+	},
+	"Input Strip Insignificant Zeros Attribute": {
+		"prefix": "strip_insignificant_zeros:",
+		"body": "strip_insignificant_zeros:${1:true}",
+		"description": "If you set \"strip_insignificant_zeros:true\", the final decimal zeros from a percentage value will be removed."
+	},
+	"As Boolean": {
+		"prefix": "as:boolean",
+		"body": "as:boolean",
+		"description": "When using the \"as boolean\", a checkbox is created."
+	},
+	"As Date": {
+		"prefix": "as:date",
+		"body": "as:date",
+		"description": "When using the \"as date\", a standard string field is shown as a date."
+	},
+	"Date Format": {
+		"prefix": "format:",
+		"body": "format:\"${1:%Y\"",
+		"description": [
+			"Customize how the date is displayed inside the input field using the 'format' attribute.\n",
+			"In the 'Date and Time' section there is a list of useful format types that can be applied."
+		]
+	},
+	"As File": {
+		"prefix": "as:file",
+		"body": "as:file",
+		"description": "Using file as a value for the as attribute gives the opportunity to upload and\nattachment or annex that can contain multiple files by clicking the paperclip icon."
+	},
+	"As Select": {
+		"prefix": "as:select",
+		"body": "as:select",
+		"description": "When using the \"as select\", a dropdown is created."
+	},
+	"Select Options": {
+		"prefix": "options:",
+		"body": "options:${1:options variable}",
+		"description": [
+			"The select value needs to be accompanied by the option attribute.\n",
+			"The option attribute contains a list of possible options which are divided by a pipe |."
+		]
+	},
+	"Select Option Values": {
+		"prefix": "option_values:",
+		"body": "option_values:${1:values variable}",
+		"description": [
+			"Optionally the attribute option_values can be added.\n",
+			"The value returned by the variable will in this case\nnot be the options presented but the corresponding option value."
+		]
+	},
+	"As Account Collection": {
+		"prefix": "as:account_collection",
+		"body": "as:account_collection range:\"${1:6 4,7 4__7}\"",
+		"description": [
+			"Account collections are used to be able to pick accounts from a certain range of accounts.\n",
+			"\nRanges can be further refined by using comma's and/or double underscores.\n",
+			"The comma's will select individual account ranges.\n",
+			"\"4,7\": This range will return all 4 and 7 accounts.\n",
+			"\nUsing double underscore will select the entire range of accounts.\n",
+			"\"4__7\": This range will return all 4, 5, 6 and 7 accounts."
+		]
+	},
+	"Default": {
+		"prefix": "default:",
+		"body": "default:${1:value}",
+		"description": [
+			"Another optional attribute is the default attribute.\n",
+			"It can be used in combination with nearly any type of input tag and it shows a default value."
+		]
+	},
+	"Placeholder": {
+		"prefix": "placeholder:",
+		"body": "placeholder:${1:value}",
+		"description": [
+			"When creating an input field, a standard placeholder shown,\nis the last part of your variable name (e.g. the key).\n",
+			"It is possible to change the placeholder with the placeholder attribute."
+		]
+	},
+	"Required": {
+		"prefix": "required:",
+		"body": "required:${1:true}",
+		"description": [
+			"The required attribute allows to change the input field\nfrom a regular one to mandatory field.\n",
+			"In other words, by using required attribute you specify\nthat the field must be filled out before submitting the form."
+		]
+	},
+	"If": {
+		"prefix": "if",
+		"body": [
+			"{% if ${1:var} %}",
+			"\t${2:content}",
+			"{% endif %}"
+		],
+		"description": [
+			"The if statement checks whether a condition is true or false.\n",
+			"If the condition is true, the code within the if statement gets executed."
+		]
+	},
+	"End If": {
+		"prefix": "endif",
+		"body": "{% endif %}",
+	},
+	"Else": {
+		"prefix": "else",
+		"body": [
+			"{% else %}",
+			"\t${1:}"
+		],
+		"description": [
+			"The else statement is used in combination with the if statement.\n",
+			"If the if statement is false, the else part will be executed."
+		]
+	},
+	"Else If": {
+		"prefix": "elsif",
+		"body": [
+			"{% elsif ${1:var} %}",
+			"\t${2:}"
+		],
+		"description": [
+			"The elsif statement is used in combination with the if statement.\n",
+			"If the if statement is false, there will be checked if the elsif statement is true."
+		]
+	},
+	"Ifi": {
+		"prefix": "ifi",
+		"body": [
+			"{% ifi ${1:var} %}",
+			"\t${2:}",
+			"{% endifi %}"
+		],
+		"description": [
+			"An ifi statement can be seen as an if statement\nthat is always true in input view and depends on the condition in export view.\n",
+			"The ifi statement can be combined with the elsif and/or else tags."
+		]
+	},
+	"End Ifi": {
+		"prefix": "endifi",
+		"body": "{% endifi %}"
+	},
+	"Unless": {
+		"prefix": "unless",
+		"body": [
+			"{% unless ${1:var} %}",
+			"\t${2:}",
+			"{% endunless %}"
+		],
+		"description": [
+			"Code within unless tag will be executed unless the statement is true.\n",
+			"It is the antagonist of the if statement.\n",
+			"The unless statement can be combined with elsif and/or else tags."
+		]
+	},
+	"End Unless": {
+		"prefix": "endunless",
+		"body": "{% endunless %}"
+	},
+	"Case": {
+		"prefix": "case",
+		"body": [
+			"{% case ${1:condition} %}",
+			"{% when ${2:case} %}",
+			"\t${3:}",
+			"{% else %}",
+			"\t${4:}",
+			"{% endcase %}"
+		],
+		"description": [
+			"The case statement is similar to a series of if statements on the same expression.\n",
+			"In many occasions, you may want to compare the same variable with different variables."
+		]
+	},
+	"End Case": {
+		"prefix": "endcase",
+		"body": "{% endcase %}"
+	},
+	"Fori Loop": {
+		"prefix": "fori",
+		"body": [
+			"{% fori  ${1:item} in ${2:array} %}",
+			"\t${2:}",
+			"{% endfori %}"
+		],
+		"description": [
+			"This is an auto expandable for loop.\n",
+			"So if you for example use input fields:\n",
+			"When you add something to input field and save the template,\nthe fori loop will automatically add another section."
+		]
+	},
+	"End Fori Loop": {
+		"prefix": "endfori",
+		"body": "{% endfori %}"
+	},
+	"For Loop": {
+		"prefix": "for",
+		"body": [
+			"{% for ${1:item} in ${2:array} %}",
+			"\t${2:}",
+			"{% endfor %}"
+		],
+		"description": [
+			"To print all the variables in our custom collection, we can print all variables individually:\n",
+			"{{ custom.the_namespace.the_namespace_1.some_data }}\n",
+			"{{ custom.the_namespace.the_namespace_2.some_data }}\n",
+			"{{ custom.the_namespace.the_namespace_3.some_data }}\n",
+			"...\n",
+			"Or we can use a for loop.\n",
+			"For loops can be used to iterate over collections Drops, a range of Numbers or Arrays."
+		]
+	},
+	"End For": {
+		"prefix": "endfor",
+		"body": "{% endfor %}"
+	},
+	"Forloop Index": {
+		"prefix": "forloop.index",
+		"body": "forloop.index",
+		"description": "Return the index of the current iteration."
+	},
+	"Forloop Index 0": {
+		"prefix": "forloop.index0",
+		"body": "forloop.index0",
+		"description": "Return the index of the current iteration (zero based)."
+	},
+	"Forloop R Index": {
+		"prefix": "forloop.rindex",
+		"body": "forloop.rindex",
+		"description": "Return the index of the current iteration in descending order."
+	},
+	"Forloop Length": {
+		"prefix": "forloop.length",
+		"body": "forloop.length",
+		"description": "Return, in each iteration, the length of the entire loop."
+	},
+	"Forloop First": {
+		"prefix": "forloop.first",
+		"body": "forloop.first",
+		"description": "Return a boolean checking if this is the first loop."
+	},
+	"Forloop Last": {
+		"prefix": "forloop.last",
+		"body": "forloop.last",
+		"description": "Return a boolean checking if this is the last loop."
+	},
+	"Break": {
+		"prefix": "body",
+		"body": "{% break %}",
+		"description": "Causes the loop to stop iterating when it encounters the break tag."
+	},
+	"Limit": {
+		"prefix": "limit",
+		"body": "limit:${1:int}",
+		"description": "The limit tag allows to exit the for loop at a specific index."
+	},
+	"Offset": {
+		"prefix": "offset",
+		"body": "offset:${1:int}",
+		"description": "Offset tag allows to start the for loop at a specific index."
+	},
+	"Reversed": {
+		"prefix": "reversed",
+		"body": "reversed",
+		"description": "Reversed tag allows to reverse the order of the loop."
 	}
 }
