@@ -35,3 +35,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Added code snippet for Fori Loop
 - Added code snippet for For Loop
 - Added code snippet for For/Fori loop filters
+
+## [0.1.0]
+
+- Added the remaining snippets.

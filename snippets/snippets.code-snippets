@@ -376,5 +376,176 @@
 		"prefix": "reversed",
 		"body": "reversed",
 		"description": "Reversed tag allows to reverse the order of the loop."
+	},
+	"Unreconciled": {
+		"prefix": "unreconciled",
+		"body": "{% unreconciled ${1:value} %}",
+		"description": [
+			"Unreconciled tags are used to indicate whether or not a template in the working papers\n(account or reconciliation template) is reconciled;",
+			"this is used quite often and has a direct impact on the progress of the working papers.",
+			"When the formula within an unreconciled tag has zero as an outcome (not to be mistaken for empty),\nthe template will be fully reconciled and a green dot will be visible at the template level."
+		]
+	},
+	"As Indicator": {
+		"prefix": "as:indicator",
+		"body": "as:indicator",
+		"description": [
+			"When using more than one unreconciled tag, it can become hard to see which parts of the template need to be reconciled.",
+			"In such case, it is suggested using the unreconciled tag as an indicator:",
+			"this means the output of the formula within the unreconciled tag, will be made visible with\na red triangle (in case of unreconciled) or a green dot (in case of reconciled)."
+		]
+	},
+	"Unreconciled Text": {
+		"prefix": "unreconciled_text:",
+		"body": "unreconciled_text:${1:text}",
+		"description": "When our indicator is unreconciled (red triangle)\nwe can add a string of text to explain the difference by adding the unreconciled_text attribute"
+	},
+	"Result": {
+		"prefix": "result",
+		"body": "{% result \"${1:name}\" ${2:content} %}",
+		"description": [
+			"If you want to reference a certain value or variable from\nreconciliation template A in another template, it can be done with the so-called result tags\nin Silverfin templating language (further on - STL)."
+		]
+	},
+	"Rollforward": {
+		"prefix": "rollforward",
+		"body": "{% rollforward ${1:last_year} ${2:this:year} %}",
+		"description": [
+			"Rollforward is used to copy data from a chosen period to a database variable in the current period.",
+			"This is done by pressing the copy data option under the action button in the Silverfin platform."
+		]
+	},
+	"Rollforward Period": {
+		"prefix": "rollforward.period",
+		"body": "rollforward.period",
+		"description": [
+			"It is possible to use rollforward.period to check from which period the data is copied.",
+			"This can be useful if you only want to rollforward in specific cases."
+		]
+	},
+	"Locale": {
+		"prefix": "locale",
+		"body": [
+			"{% locale ${1:locale} %}",
+			"\t${2:}",
+			"{% endlocale %}"
+		],
+		"description": [
+			"When using locale with logic tags, you can force a language and ignore the chosen user language."
+		]
+	},
+	"Include": {
+		"prefix": "include",
+		"body": "{% include \"${1:parts}/${2:part_name}\" %}",
+		"description": [
+			"The code of reconciliation templates is stored in a main part and in 15 optional parts.",
+			"The main part is always loaded first, while the additional parts are only loaded when they are called."
+		]
+	},
+	"Linkto": {
+		"prefix": "linkto",
+		"body": "{% linkto period.reconciliation.${1:handle} %}${2:text}{% endlinkto %}",
+		"description": [
+			"Linkto tags can be used to jump to other templates or to jump to a specific section in the same or another template."
+		]
+	},
+	"Target": {
+		"prefix": "target",
+		"body": "{::target id=\"${1:target_id}\"}${2:text}{:/target}",
+		"description": "In the target template you should define the target ID."
+	},
+	"Linkto Target": {
+		"prefix": "target:",
+		"body": "target:",
+		"description": [
+			"In order to jump to a specific section of a template, you should define the target.",
+			"As an example we want to jump to the additional explanation section in template benefit in kind."
+		]
+	},
+	"Linkto Button": {
+		"prefix": "as:button",
+		"body": "as:button",
+		"description": [
+			"Turn the link to into a button"
+		]
+	},
+	"Adjustment Button": {
+		"prefix": "adjustmentbutton",
+		"body": [
+			"{% adjustmentbutton text:\"${1:text}\" category:\"${2:text} %}\"",
+			"\t",
+			"{% endadjustmentbutton %}"
+		],
+		"description": "By using adjustment button tag you can create a button that would automatically make an adjustment, filled with values taken from Liquid logic."
+	},
+	"Adjustment Transaction": {
+		"prefix": "adjustmenttransaction",
+		"body": "{% adjustmenttransaction account_number:${1:number} description:\"${2:text}\" value:${3:value} %}",
+		"description": "Can only be inside the Adjustment Button."
+	},
+	"Group": {
+		"prefix": "group",
+		"body": [
+			"{% nic %}",
+			"{:/group}",
+			"{::group}",
+			"{% endnic %}"
+		],
+		"description": [
+			"For accounts and reconciliation templates, you need to first close and then open the group tag.",
+			"This is due to the fact that the group tag is already opened in advanced settings in styles of the template and/or of the header of the template."
+		]
+	},
+	"Add New Inputs": {
+		"prefix": "addnewinputs",
+		"body": [
+			"{% addnewinputs %}",
+			"\t",
+			"{% endaddnewinputs %}"
+		],
+		"description": "We use an addnewinputs tag to allow user sorting information that was stored/added in the collection."
+	},
+	"Sign Marker": {
+		"prefix": "signmarker",
+		"body": "{% signmarker ${1:} %}",
+		"description": [
+			"The signmarker tag could be used to add the possibility to sign certain documents digitally.",
+			"To accomplish that, first you would need to add the signmarker tag in your code, close to where the actual signature would be located.",
+			"This will allow to sign the documents through an external provider, which will be able to pick the information given to the signmarker to that end.",
+			"\n",
+			"Parameters:",
+			"name",
+			"email",
+			"phone",
+			"role",
+			"on_behalf_of"
+		]
+	},
+	"Push": {
+		"prefix": "push",
+		"body": "{% push ${1:item} to:${2:array} %}",
+		"description": [
+			"Push tag will add an item at the end of your array."
+		]
+	},
+	"Pop": {
+		"prefix": "pop",
+		"body": "{% pop ${1:item} to:${2:array} %}",
+		"description": "Pop tag will remove the last item of your array and will give you the option to store this value into a variable."
+	},
+	"Push, Pop at Beginning": {
+		"prefix": "at:beginning",
+		"body": "at:beginning",
+		"description": "It is possible to override the LIFO behaviour with the attribute \"at:beginning\" and insert/remove to/from the head rather than the tail of the array."
+	},
+	"Change Orientation": {
+		"prefix": "changeorientation",
+		"body": "{% changeorientation \"${1:landscape/portrait}\" %}",
+		"description": [
+			"If you wish to change the orientation in the PDF export you can use the {% changeorientation “orientation of choice” %} tag.",
+			"Keep in mind that the function will apply to everything below and will not close.",
+			"Once you have selected \"landscape\" all the following will appear as landscape.",
+			"To revert back to portrait you would need to apply the tag again."
+		]
 	}
 }

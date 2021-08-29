@@ -1,7 +1,15 @@
 {
 	"cSpell.words": [
 		"Forloop",
+		"Linkto",
+		"Rollforward",
 		"Templating",
+		"addnewinputs",
+		"adjustmentbutton",
+		"adjustmenttransaction",
+		"changeorientation",
+		"endaddnewinputs",
+		"endadjustmentbutton",
 		"endcapture",
 		"endcase",
 		"endcomment",
@@ -9,9 +17,12 @@
 		"endfori",
 		"endic",
 		"endifi",
+		"endlinkto",
+		"endlocale",
 		"endnic",
 		"endunless",
 		"fori",
-		"rindex"
+		"rindex",
+		"signmarker"
 	]
 }
