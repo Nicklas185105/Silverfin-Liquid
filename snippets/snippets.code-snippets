@@ -310,7 +310,7 @@
 		"prefix": "for",
 		"body": [
 			"{% for ${1:item} in ${2:array} %}",
-			"\t${2:}",
+			"\t${3:}",
 			"{% endfor %}"
 		],
 		"description": [
@@ -434,6 +434,10 @@
 			"When using locale with logic tags, you can force a language and ignore the chosen user language."
 		]
 	},
+	"End Locale": {
+		"prefix": "endlocale",
+		"body": "{% endlocale %}"
+	},
 	"Include": {
 		"prefix": "include",
 		"body": "{% include \"${1:parts}/${2:part_name}\" %}",
@@ -448,6 +452,10 @@
 		"description": [
 			"Linkto tags can be used to jump to other templates or to jump to a specific section in the same or another template."
 		]
+	},
+	"End Linkto": {
+		"prefix": "endlinkto",
+		"body": "{% endlinkto %}"
 	},
 	"Target": {
 		"prefix": "target",
@@ -478,6 +486,10 @@
 		],
 		"description": "By using adjustment button tag you can create a button that would automatically make an adjustment, filled with values taken from Liquid logic."
 	},
+	"End Adjustment Button": {
+		"prefix": "endadjustmentbutton",
+		"body": "{% endadjustmentbutton %}"
+	},
 	"Adjustment Transaction": {
 		"prefix": "adjustmenttransaction",
 		"body": "{% adjustmenttransaction account_number:${1:number} description:\"${2:text}\" value:${3:value} %}",
@@ -504,6 +516,10 @@
 			"{% endaddnewinputs %}"
 		],
 		"description": "We use an addnewinputs tag to allow user sorting information that was stored/added in the collection."
+	},
+	"End Add New Inputs": {
+		"prefix": "endaddnewinputs",
+		"body": "{% endaddnewinputs %}"
 	},
 	"Sign Marker": {
 		"prefix": "signmarker",
@@ -547,5 +563,25 @@
 			"Once you have selected \"landscape\" all the following will appear as landscape.",
 			"To revert back to portrait you would need to apply the tag again."
 		]
+	},
+	"Strip New Lines": {
+		"prefix": "stripnewlines",
+		"body": [
+			"{% stripnewlines %}",
+			"\t${1:}",
+			"{% endstripnewlines %}"
+		],
+		"description": [
+			"It removes any newline characters (line breaks) from a string. The tag newline must be used when a break within stripnewlines is needed."
+		]
+	},
+	"End Strip New Lines": {
+		"prefix": "endstripnewlines",
+		"body": "{% endstripnewlines %}"
+	},
+	"New Line": {
+		"prefix": "newline",
+		"body": "{% newline %}",
+		"description": "The tag newline must be used when a break within stripnewlines is needed."
 	}
 }

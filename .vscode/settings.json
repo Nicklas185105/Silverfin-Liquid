@@ -3,6 +3,7 @@
 		"Forloop",
 		"Linkto",
 		"Rollforward",
+		"Stripnewlines",
 		"Templating",
 		"addnewinputs",
 		"adjustmentbutton",
@@ -20,8 +21,10 @@
 		"endlinkto",
 		"endlocale",
 		"endnic",
+		"endstripnewlines",
 		"endunless",
 		"fori",
+		"markdownlint",
 		"rindex",
 		"signmarker"
 	]
