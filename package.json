@@ -2,19 +2,61 @@
 	"name": "silverfin-liquid",
 	"displayName": "Silverfin Liquid",
 	"description": "Syntax Highlighting for Silverfin Templating Language - Liquid",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"publisher": "NicklasLydersen",
 	"repository": {
 		"url": "https://github.com/Nicklas185105/Silverfin-Liquid"
 	},
 	"engines": {
-		"vscode": "^1.0.0"
+		"vscode": "^1.59.0"
 	},
 	"categories": [
 		"Programming Languages",
 		"Snippets"
 	],
+	"activationEvents": [
+		"onCommand:stl-extension.helloWorld",
+		"onView:result-tags",
+		"onView:assign-tags"
+	],
+	"main": "./out/extension.js",
 	"contributes": {
+		"commands": [
+			{
+				"command": "stl-extension.helloWorld",
+				"title": "Hello World"
+			},
+			{
+				"command": "result-tags.refreshEntry",
+				"title": "Refresh",
+				"icon": {
+					"light": "resources/light/refresh.svg",
+					"dark": "resources/dark/refresh.svg"
+				}
+			},
+			{
+				"command": "assign-tags.refreshEntry",
+				"title": "Refresh",
+				"icon": {
+					"light": "resources/light/refresh.svg",
+					"dark": "resources/dark/refresh.svg"
+				}
+			}
+		],
+		"menus": {
+			"view/title": [
+				{
+					"command": "result-tags.refreshEntry",
+					"when": "view == result-tags",
+					"group": "navigation"
+				},
+				{
+					"command": "assign-tags.refreshEntry",
+					"when": "view == assign-tags",
+					"group": "navigation"
+				}
+			]
+		},
 		"languages": [
 			{
 				"id": "liquid",
@@ -41,6 +83,59 @@
 				"scopeName": "source.stl",
 				"path": "./syntaxes/stl.tmLanguage.json"
 			}
+		],
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "silverfin-template-explorer",
+					"title": "Silverfin Template Explorer",
+					"icon": "resources/logo.svg"
+				}
+			]
+		},
+		"views": {
+			"silverfin-template-explorer": [
+				{
+					"id": "assign-tags",
+					"name": "Assigns"
+				},
+				{
+					"id": "result-tags",
+					"name": "Results"
+				},
+				{
+					"id": "register-tags",
+					"name": "Registers"
+				}
+			]
+		},
+		"viewsWelcome": [
+			{
+				"view": "assign-tags",
+				"contents": "In order to use Silverfin Template Explorer features, you can open a folder containing .liquid files.\n[Open Folder](command:vscode.openFolder)",
+				"when": "workbenchState == empty"
+			}
 		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.59.0",
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.2.2",
+		"@types/node": "14.x",
+		"eslint": "^7.27.0",
+		"@typescript-eslint/eslint-plugin": "^4.26.0",
+		"@typescript-eslint/parser": "^4.26.0",
+		"glob": "^7.1.7",
+		"mocha": "^8.4.0",
+		"typescript": "^4.3.2",
+		"vscode-test": "^1.5.2"
 	}
 }

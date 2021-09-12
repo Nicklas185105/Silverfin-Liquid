@@ -6,6 +6,13 @@ All notable changes to the "silverfin-liquid" extension will be documented in th
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.2.0] - 2021-09-12
+
+### Added
+
+- Side panel with 3 views.
+- First panel view is now getting populated.
+
 ## [0.1.1] - 2021-09-09
 
 ### Added
@@ -64,7 +71,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Initial release.
 - Added Syntax Highlighting.
 
-[0.1.1]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.1.0...HEAD
+[0.2.0]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.0.4...v0.1.0
 [0.0.4]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.0.2...v0.0.3

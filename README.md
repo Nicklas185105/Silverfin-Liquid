@@ -2,7 +2,8 @@
 
 ## Features
 
-Only feature right now is syntax highlighting
+Syntax highlighting
+Code Snippets
 
 ## Release Notes
 
