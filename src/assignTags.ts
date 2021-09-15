@@ -40,7 +40,6 @@ export class AssignTagsProvider implements vscode.TreeDataProvider<Dependency> {
 			const packageJsonPath = this.workspaceRootString;
 			if (this.pathExists(packageJsonPath)) {
 				const test = this.getDeps(packageJsonPath);
-				//console.log(test);
 				return Promise.resolve(test);
 			} else {
 				vscode.window.showInformationMessage('Workspace has no package.json');
@@ -50,9 +49,7 @@ export class AssignTagsProvider implements vscode.TreeDataProvider<Dependency> {
 	}
 
 	private getDeps(dirPath: string): Dependency[] {
-		//console.log(dirPath);
 		let files = fs.readdirSync(dirPath);
-		//console.log(files);
 		const toDep = (files: string[], dirPath: string): Dependency[] => {
 			let deps = new Array();
 
@@ -65,8 +62,6 @@ export class AssignTagsProvider implements vscode.TreeDataProvider<Dependency> {
 					});
 				}
 			});
-
-			//console.log("Length: " + deps.length);
 
 			return deps;
 		};
@@ -89,9 +84,6 @@ export class AssignTagsProvider implements vscode.TreeDataProvider<Dependency> {
 	private readDirectory(file: string, filePath: string, rootPath: string): Dependency[] {
 		let deps = new Array();
 
-		console.log(file);
-		console.log(filePath);
-
 		if (fs.lstatSync(filePath).isDirectory()) {
 			fs.readdirSync(filePath).forEach(dirFiles => {
 				const dirFilePath = path.join(filePath, dirFiles);
@@ -110,7 +102,6 @@ export class AssignTagsProvider implements vscode.TreeDataProvider<Dependency> {
 						let reResult;
 						while ((reResult = this.re.exec(line)) !== null) {
 							const tagName = reResult[2];
-							//console.log(this.re.lastIndex);
 							deps.push(new Dependency(tagName, path.join(rootPath, dirFiles), lineCount.toString()));
 						}
 					}
@@ -130,7 +121,6 @@ export class AssignTagsProvider implements vscode.TreeDataProvider<Dependency> {
 				let reResult;
 				while ((reResult = this.re.exec(line)) !== null) {
 					const tagName = reResult[2];
-					//console.log(this.re.lastIndex);
 					deps.push(new Dependency(tagName, file, lineCount.toString()));
 				}
 			}

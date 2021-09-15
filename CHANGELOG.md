@@ -6,6 +6,12 @@ All notable changes to the "silverfin-liquid" extension will be documented in th
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.2.3] - 2021-09-16
+
+## Added
+
+- Added so the assign view will automatically refresh on save.
+
 ## [0.2.2] - 2021-09-15
 
 ## Fixed
@@ -84,7 +90,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Initial release.
 - Added Syntax Highlighting.
 
-[0.2.2]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.1...HEAD
+[0.2.3]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.2...HEAD
+[0.2.2]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.1.0...v0.1.1
