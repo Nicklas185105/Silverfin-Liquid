@@ -6,6 +6,13 @@ All notable changes to the "silverfin-liquid" extension will be documented in th
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.2.2] - 2021-09-15
+
+## Fixed
+
+- Fixed the finding of assigns. The name of the assign is now always the correct.
+- Fixed the finding of assigns in folders.
+
 ## [0.2.1] - 2021-09-15
 
 ### Changed
@@ -77,7 +84,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Initial release.
 - Added Syntax Highlighting.
 
-[0.2.1]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.0...HEAD
+[0.2.2]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.0.4...v0.1.0

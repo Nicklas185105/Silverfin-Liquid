@@ -18,6 +18,7 @@ export class AssignTagsProvider implements vscode.TreeDataProvider<Dependency> {
 	}
 
 	private workspaceRootString!: string;
+	private re = new RegExp(`{%\\sassign\\s('|")?([\\[\\]\\-$\\w]+)+('|")?\\s=\\s([\\{\\]\\-\\.$\\w"']+)+\\s%}`, 'g');
 
 	refresh(): void {
 		this._onDidChangeTreeData.fire();
@@ -39,7 +40,7 @@ export class AssignTagsProvider implements vscode.TreeDataProvider<Dependency> {
 			const packageJsonPath = this.workspaceRootString;
 			if (this.pathExists(packageJsonPath)) {
 				const test = this.getDeps(packageJsonPath);
-				console.log(test);
+				//console.log(test);
 				return Promise.resolve(test);
 			} else {
 				vscode.window.showInformationMessage('Workspace has no package.json');
@@ -49,53 +50,30 @@ export class AssignTagsProvider implements vscode.TreeDataProvider<Dependency> {
 	}
 
 	private getDeps(dirPath: string): Dependency[] {
-		console.log(dirPath);
-		const files = fs.readdirSync(dirPath);
-
+		//console.log(dirPath);
+		let files = fs.readdirSync(dirPath);
+		//console.log(files);
 		const toDep = (files: string[], dirPath: string): Dependency[] => {
 			let deps = new Array();
 
 			files.forEach(file => {
-				if (file.includes('.liquid')) {
-					const readInterface = readline.createInterface({
-						input: fs.createReadStream(path.join(dirPath, file)),
-						output: process.stdout
+				const filePath = path.join(dirPath, file);
+				if (fs.existsSync(filePath)) {
+					//readDirectory
+					this.readDirectory(file, filePath, file).forEach(dep => {
+						deps.push(dep);
 					});
-
-					let lineCount = 0;
-
-					/*readInterface.on('SIGINT', () => resolve());
-
-					readInterface.on('line', function (line) {
-						lineCount++;
-						if (line.includes('{% assign ')) {
-							const tagName = line.split(' ')[2];
-							console.log(tagName);
-							deps.push(new Dependency(tagName, file, lineCount.toString()));
-						}
-					});*/
-
-					const arr = fs.readFileSync(path.join(dirPath, file)).toString().replace(/\r\n/g, '\n').split('\n');
-
-					for (let line of arr) {
-						lineCount++;
-						if (line.includes('{% assign ')) {
-							const tagName = line.split(' ')[2];
-							console.log(tagName);
-							deps.push(new Dependency(tagName, file, lineCount.toString()));
-						}
-					}
 				}
 			});
 
-			console.log("Length: " + deps.length);
+			//console.log("Length: " + deps.length);
 
 			return deps;
 		};
 
-		const depss = toDep(files, dirPath);
+		const deps = toDep(files, dirPath);
 
-		return depss;
+		return deps;
 	}
 
 	private pathExists(p: string): boolean {
@@ -106,6 +84,59 @@ export class AssignTagsProvider implements vscode.TreeDataProvider<Dependency> {
 		}
 
 		return true;
+	}
+
+	private readDirectory(file: string, filePath: string, rootPath: string): Dependency[] {
+		let deps = new Array();
+
+		console.log(file);
+		console.log(filePath);
+
+		if (fs.lstatSync(filePath).isDirectory()) {
+			fs.readdirSync(filePath).forEach(dirFiles => {
+				const dirFilePath = path.join(filePath, dirFiles);
+				if (fs.lstatSync(dirFilePath).isDirectory()) {
+					this.readDirectory(dirFiles, dirFilePath, path.join(file, dirFiles)).forEach(dep => {
+						deps.push(dep);
+					});
+				} else if (fs.lstatSync(dirFilePath).isFile() && dirFiles.includes('.liquid')) {
+					let lineCount = 0;
+
+					const arr = fs.readFileSync(dirFilePath).toString().replace(/\r\n/g, '\n').split('\n');
+
+					for (let line of arr) {
+						lineCount++;
+
+						let reResult;
+						while ((reResult = this.re.exec(line)) !== null) {
+							const tagName = reResult[2];
+							//console.log(this.re.lastIndex);
+							deps.push(new Dependency(tagName, path.join(rootPath, dirFiles), lineCount.toString()));
+						}
+					}
+				}
+			});
+		}
+
+		if (fs.lstatSync(filePath).isFile() && filePath.includes('.liquid')) {
+
+			let lineCount = 0;
+
+			const arr = fs.readFileSync(filePath).toString().replace(/\r\n/g, '\n').split('\n');
+
+			for (let line of arr) {
+				lineCount++;
+
+				let reResult;
+				while ((reResult = this.re.exec(line)) !== null) {
+					const tagName = reResult[2];
+					//console.log(this.re.lastIndex);
+					deps.push(new Dependency(tagName, file, lineCount.toString()));
+				}
+			}
+		}
+
+		return deps;
 	}
 }
 
