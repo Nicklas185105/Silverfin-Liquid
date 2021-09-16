@@ -8,6 +8,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [0.2.4] - 2021-09-16
 
+## Added
+
+- Added _t at the end of the variable for translation snippet.
+- Added hover description for two tags.
+
 ## Removed
 
 - Auto closing of "_" and "*".
