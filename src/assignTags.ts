@@ -1,8 +1,6 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as readline from 'readline';
-import { resolve } from 'path';
 
 export class AssignTagsProvider implements vscode.TreeDataProvider<Dependency> {
 
