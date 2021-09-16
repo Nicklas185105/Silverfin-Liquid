@@ -1,0 +1,16 @@
+name: Publish
+on:
+  release:
+    types: [published]
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - shell: bash
+        env:
+          VSCE_TOKEN: ${{ secrets.vsce_token }}
+      - name: vsce publish
+        uses: sigma/vsce-publish-action@v0.0.2
+        with:
+          # vsce token
+          vsce_token: "$VSCE_TOKEN"
