@@ -6,7 +6,13 @@ All notable changes to the "silverfin-liquid" extension will be documented in th
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [0.2.3] - 2021-09-16
+## [0.2.4] - 2021-09-16
+
+## Removed
+
+- Auto closing of "_" and "*".
+
+## [0.2.3] - 2021-09-17
 
 ## Added
 
@@ -90,7 +96,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Initial release.
 - Added Syntax Highlighting.
 
-[0.2.3]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.2...HEAD
+[0.2.4]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.3...HEAD
+[0.2.3]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.1.1...v0.2.0
