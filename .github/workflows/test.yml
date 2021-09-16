@@ -1,0 +1,21 @@
+name: 'test-publish'
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm run compile
+      - run: tsc -p ./
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        env:
+          VSCE_TOKEN: ${{ secrets.vsce_token }}
+      - name: vsce publish
+        uses: sigma/vsce-publish-action@v0.0.2
+        with:
+          # vsce token
+          vsce_token: "$VSCE_TOKEN"
