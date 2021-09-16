@@ -5,16 +5,18 @@ on:
       - main
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
       - run: npm run compile
       - run: tsc -p ./
   publish:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - shell: bash
         env:
