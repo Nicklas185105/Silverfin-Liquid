@@ -63,7 +63,7 @@
 	"Set Translation": {
 		"prefix": "t=",
 		"body": [
-			"{% t= \"${1:key}\"",
+			"{% t= \"${1:key}_t\"",
 			"\ten:\"${2:en translation}\"",
 			"\tda:\"${3:da translation}\"",
 			"%}"
