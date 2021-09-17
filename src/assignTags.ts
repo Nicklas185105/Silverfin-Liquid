@@ -16,7 +16,7 @@ export class AssignTagsProvider implements vscode.TreeDataProvider<Dependency> {
 	}
 
 	private workspaceRootString!: string;
-	private re = new RegExp(`{%\\sassign\\s('|")?([\\[\\]\\-$\\w]+)+('|")?\\s=\\s([\\{\\]\\-\\.$\\w"']+)+\\s%}`, 'g');
+	private re = new RegExp(`{%\\sassign\\s('|")?([\\[\\]\\-$\\w]+)('|")?\\s=\\s('|")?([\\{\\]\\-\\s\\.$\\w]+)('|")?\\s(\\|\\s(([\\w]+)+:('|")?([\\w\\s|]+)+('|")?)\\s)*%}`, 'g');
 
 	refresh(): void {
 		this._onDidChangeTreeData.fire();
