@@ -13,6 +13,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Added _t at the end of the variable for translation snippet.
 - Added hover description for two tags.
 
+## Changed
+
+- Made it so that assign tags now also takes filters into account.
+
 ## Removed
 
 - Auto closing of "_" and "*".

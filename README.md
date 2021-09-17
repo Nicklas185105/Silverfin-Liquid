@@ -4,8 +4,13 @@
 
 ## Features
 
-Syntax highlighting
-Code Snippets
+Syntax highlighting.
+
+Code Snippets.
+
+Action Bar, with analyse tools.
+
+Programmatic Language Features, such as hover description.
 
 ## Release Notes
 
