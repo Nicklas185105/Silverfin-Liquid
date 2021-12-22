@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Added
 
 - Added translation snippet with only a default field.
+- Added indent snippet
 
 ## [0.2.5] - 2021-12-22
 
