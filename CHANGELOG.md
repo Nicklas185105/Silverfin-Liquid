@@ -12,6 +12,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Added translation snippet with only a default field.
 - Added indent snippet
+- Added warningtext snippets
+- Added infotext snippets
+- Added HTML table creation
+- Added all HTML table tags
+- Added all HTML table classes
 
 ## [0.2.5] - 2021-12-22
 

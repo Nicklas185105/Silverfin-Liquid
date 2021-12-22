@@ -647,5 +647,157 @@
 		"prefix": "warningtexthover",
 		"body": "{% ic %}{::warningtext as=\"hover\"}${1:content}{:/warningtext}",
 		"description": "The Silverfin templating language gives the opportunity to add warning text. There are 3 ways to present it: as an inline element, as a block or as a hover element."
+	},
+	"HTML Table": {
+		"prefix": "table",
+		"body": [
+			"<table class=\"${1:usr-repeated-header }usr-width-100\">",
+			"\t<thead>",
+			"\t\t<tr>",
+			"\t\t\t<th class=\"usr-width-${2:50}\">${3:content}</th>",
+			"\t\t\t<th class=\"usr-width-${4:50}\">${5:content}</th>",
+			"\t\t</tr>",
+			"\t</thead>",
+			"\t<tbody>",
+			"\t\t<tr>",
+			"\t\t\t<td>${6:content}</td>",
+			"\t\t\t<td>${6:content}</td>",
+			"\t\t</tr>",
+			"\t</tbody>",
+			"</table>"
+		],
+		"description": "Use html to create a table with more customization."
+	},
+	"HTML Head Tag": {
+		"prefix": "thead",
+		"body": [
+			"<thead>",
+			"\t${1:content}",
+			"</thead>"
+		],
+		"description": "HTML header tag"
+	},
+	"HTML Body Tag": {
+		"prefix": "tbody",
+		"body": [
+			"<tbody>",
+			"\t${1:content",
+			"</tbody>"
+		],
+		"description": "HTML body tag"
+	},
+	"HTML Row Tag": {
+		"prefix": "tr",
+		"body": [
+			"<tr>",
+			"${1:content}",
+			"</tr>"
+		],
+		"description": "HTML row tag"
+	},
+	"HTML Header Sub Tag": {
+		"prefix": "th",
+		"body": "<th class=\"usr-width-${1:50}\">${2:content}</th>",
+		"description": "HTML sub header tag"
+	},
+	"HTML Body Sub Tag": {
+		"prefix": "td",
+		"body": "<td>${1:content}</td>",
+		"description": "HTML sub body tag"
+	},
+	"HTML Break Tag": {
+		"prefix": "br",
+		"body": "</br>",
+		"description": "HTML line break tag"
+	},
+	"HTML Bold Tag": {
+		"prefix": "b",
+		"body": "<b>${1:content}</b>",
+		"description": "HTML bold tag"
+	},
+	"HTML Italics Tag": {
+		"prefix": "i",
+		"body": "<i>${1:content}</i>",
+		"description": "HTML italics tag"
+	},
+	"HTML Width Class": {
+		"prefix": "usrwidth",
+		"body": "usr-width-${1:content}",
+		"description": "HTML width class"
+	},
+	"HTML Align Right Class": {
+		"prefix": "usralignright",
+		"body": "usr-align-right",
+		"description": "HTML align text right class"
+	},
+	"HTML Align Left Class": {
+		"prefix": "usralignleft",
+		"body": "usr-align-left",
+		"description": "HTML align text left class"
+	},
+	"HTML Align Center Class": {
+		"prefix": "usraligncenter",
+		"body": "usr-align-center",
+		"description": "HTML align text center class"
+	},
+	"HTML Align Top Class": {
+		"prefix": "usraligntop",
+		"body": "usr-valign-top",
+		"description": "HTML align text top class"
+	},
+	"HTML Align Vertical Center Class": {
+		"prefix": "usrvaligncenter",
+		"body": "usr-valign-center",
+		"description": "HTML align text vertical center class"
+	},
+	"HTML Align Bottom Class": {
+		"prefix": "usralignbottom",
+		"body": "usr-valign-bottom",
+		"description": "HTML align text bottom class"
+	},
+	"HTML Line Top Class": {
+		"prefix": "usrlinetop",
+		"body": "usr-line-top",
+		"description": "HTML create line above text class"
+	},
+	"HTML Line Bottom Class": {
+		"prefix": "usrlinebottom",
+		"body": "usr-line-bottom",
+		"description": "HTML create line under text class"
+	},
+	"HTML Line Right Class": {
+		"prefix": "usrlineright",
+		"body": "usr-line-right",
+		"description": "HTML create line to the right of text class"
+	},
+	"HTML Line Left Class": {
+		"prefix": "usrlineleft",
+		"body": "usr-line-left",
+		"description": "HTML create line to the left of text class"
+	},
+	"HTML Double Line Top Class": {
+		"prefix": "usrdoublelinetop",
+		"body": "usr-double-line-top",
+		"description": "HTML create line above text class"
+	},
+	"HTML Double Line Bottom Class": {
+		"prefix": "usrdoublelinebottom",
+		"body": "usr-double-line-bottom",
+		"description": "HTML create line under text class"
+	},
+	"HTML Double Line Right Class": {
+		"prefix": "usrdoublelineright",
+		"body": "usr-double-line-right",
+		"description": "HTML create line to the right of text class"
+	},
+	"HTML Double Line Left Class": {
+		"prefix": "usrdoublelineleft",
+		"body": "usr-double-line-left",
+		"description": "HTML create line to the left of text class"
+	},
+	"HTML Indent Class": {
+		"prefix": "usrindent",
+		"body": "usr-indent-${1:1-10}",
+		"description": "HTML create indentation in cell"
 	}
 }
