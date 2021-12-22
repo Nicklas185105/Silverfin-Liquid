@@ -609,5 +609,43 @@
 		"prefix": "fontcolor",
 		"body": "<font color=\"${1:color in hex}\">${2:content}</font>",
 		"description": "Colours should be avoided in general apart from its use on the disabled titles where light grey can be applied (Hexadecimal code = “CCCCCC”)"
+	},
+	"Info Text Inline": {
+		"prefix": "infotextinline",
+		"body": "{% ic %}{::infotext}${1:content}{:/infotext}{% endic %}",
+		"description": "The Silverfin templating language gives the opportunity to add info text. There are 3 ways to present it: as an inline element, as a block or as a hover element."
+	},
+	"Info Text Block": {
+		"prefix": "infotextblock",
+		"body": [
+			"{% ic %}{::infotext}",
+			"${1:content}",
+			"{:/infotext}{% endic %}"
+		],
+		"description": "The Silverfin templating language gives the opportunity to add info text. There are 3 ways to present it: as an inline element, as a block or as a hover element."
+	},
+	"Info Text Hover": {
+		"prefix": "infotexthover",
+		"body": "{% ic %}{::infotext as=\"hover\"}${1:content}{:/infotext}{% endic %}",
+		"description": "The Silverfin templating language gives the opportunity to add info text. There are 3 ways to present it: as an inline element, as a block or as a hover element."
+	},
+	"Warning Text Inline": {
+		"prefix": "warningtextinline",
+		"body": "{% ic %}{::warningtext}${1:content}{:/warningtext}",
+		"description": "The Silverfin templating language gives the opportunity to add warning text. There are 3 ways to present it: as an inline element, as a block or as a hover element."
+	},
+	"Warning Text Block": {
+		"prefix": "warningtextblock",
+		"body": [
+			"{% ic %}{::warningtext}",
+			"${1:content}",
+			"{:/warningtext}"
+		],
+		"description": "The Silverfin templating language gives the opportunity to add warning text. There are 3 ways to present it: as an inline element, as a block or as a hover element."
+	},
+	"Warning Text Hover": {
+		"prefix": "warningtexthover",
+		"body": "{% ic %}{::warningtext as=\"hover\"}${1:content}{:/warningtext}",
+		"description": "The Silverfin templating language gives the opportunity to add warning text. There are 3 ways to present it: as an inline element, as a block or as a hover element."
 	}
 }

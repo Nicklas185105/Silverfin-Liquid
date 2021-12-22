@@ -50,12 +50,20 @@
 		"fontsize",
 		"fori",
 		"Forloop",
+		"infotext",
+		"infotextblock",
+		"infotexthover",
+		"infotextinline",
 		"Linkto",
 		"markdownlint",
 		"rindex",
 		"Rollforward",
 		"signmarker",
 		"Stripnewlines",
-		"Templating"
+		"Templating",
+		"warningtext",
+		"warningtextblock",
+		"warningtexthover",
+		"warningtextinline"
 	]
 }
