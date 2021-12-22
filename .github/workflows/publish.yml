@@ -1,15 +1,26 @@
-name: Publish
+name: Release
 on:
   release:
-    types: [published]
+    types:
+      - published
+  workflow_dispatch:
+
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
-    env:
-      VSCE_TOKEN: ${{ secrets.vsce_token }}
+
     steps:
-      - name: vsce publish
-        uses: sigma/vsce-publish-action@v0.0.2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
         with:
-          # vsce token
-          vsce_token: "$env:VSCE_TOKEN"
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install the dependencies
+        rune: npm i
+
+      - name: Install vsce
+        run: npm i -g vsce
+
+      - name: Publish
+        run: vsce publish -p ${{ secrets.vsce_token }}
