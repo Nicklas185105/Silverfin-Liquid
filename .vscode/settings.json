@@ -1,4 +1,24 @@
 {
+	"workbench.colorCustomizations": {
+		"activityBar.activeBackground": "#c09c67",
+		"activityBar.activeBorder": "#d2ece2",
+		"activityBar.background": "#c09c67",
+		"activityBar.foreground": "#15202b",
+		"activityBar.inactiveForeground": "#15202b99",
+		"activityBarBadge.background": "#d2ece2",
+		"activityBarBadge.foreground": "#15202b",
+		"statusBar.background": "#ad8447",
+		"statusBar.foreground": "#15202b",
+		"statusBarItem.hoverBackground": "#896838",
+		"titleBar.activeBackground": "#ad8447",
+		"titleBar.activeForeground": "#15202b",
+		"titleBar.inactiveBackground": "#ad844799",
+		"titleBar.inactiveForeground": "#15202b99",
+		"sash.hoverBorder": "#c09c67",
+		"statusBarItem.remoteBackground": "#ad8447",
+		"statusBarItem.remoteForeground": "#15202b"
+	},
+	"peacock.color": "#ad8447",
 	"files.exclude": {
 		"out": false // set this to true to hide the "out" folder with the compiled JS files
 	},
