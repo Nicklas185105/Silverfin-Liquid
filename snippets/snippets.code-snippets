@@ -74,6 +74,17 @@
 			" 2. adding text in that particular language."
 		]
 	},
+	"Set Translation Default": {
+		"prefix": "t=default",
+		"body": [
+			"{% t= \"${1:key}_t\" default:\"${1:translation}\""
+		],
+		"description": [
+			"To make sure that the content of the template is translated\nin different languages, you need to set translation by:\n",
+			" 1. indicating the language to which you would like to translate your text; and",
+			" 2. adding text in that particular language."
+		]
+	},
 	"Get Translation": {
 		"prefix": "t",
 		"body": [
