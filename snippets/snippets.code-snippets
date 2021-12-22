@@ -480,8 +480,8 @@
 	"Adjustment Button": {
 		"prefix": "adjustmentbutton",
 		"body": [
-			"{% adjustmentbutton text:\"${1:text}\" category:\"${2:text} %}\"",
-			"\t",
+			"{% adjustmentbutton text:\"${1:text}\" category:\"${2:text}\" %}",
+			"\t${3:}",
 			"{% endadjustmentbutton %}"
 		],
 		"description": "By using adjustment button tag you can create a button that would automatically make an adjustment, filled with values taken from Liquid logic."

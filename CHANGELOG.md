@@ -6,7 +6,13 @@ All notable changes to the "silverfin-liquid" extension will be documented in th
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [0.2.4] - 2021-09-16
+## [0.2.5] - 2021-12-22
+
+## Fixed
+
+- Fixed Adjustmentbutton snippet
+
+## [0.2.4] - 2021-09-17
 
 ## Added
 
@@ -21,7 +27,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Auto closing of "_" and "*".
 
-## [0.2.3] - 2021-09-17
+## [0.2.3] - 2021-09-16
 
 ## Added
 
