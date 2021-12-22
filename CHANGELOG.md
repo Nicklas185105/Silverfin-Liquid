@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## Fixed
 
 - Fixed Adjustmentbutton snippet
+- Fixed Linkto snippet
 
 ## [0.2.4] - 2021-09-17
 

@@ -448,7 +448,7 @@
 	},
 	"Linkto": {
 		"prefix": "linkto",
-		"body": "{% linkto period.reconciliation.${1:handle} %}${2:text}{% endlinkto %}",
+		"body": "{% linkto period.reconciliations.${1:handle} %}${2:text}{% endlinkto %}",
 		"description": [
 			"Linkto tags can be used to jump to other templates or to jump to a specific section in the same or another template."
 		]
