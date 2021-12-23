@@ -6,6 +6,12 @@ All notable changes to the "silverfin-liquid" extension will be documented in th
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.2.7] - 2021-12-23
+
+### Fixed
+
+- Added mixing endic tag to warningtext snippets
+
 ## [0.2.6] - 2021-12-22
 
 ### Added
@@ -124,7 +130,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Initial release.
 - Added Syntax Highlighting.
 
-[0.2.6]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.5...HEAD
+[0.2.7]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.6...HEAD
+[0.2.6]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.5...v0.2.6
 [0.2.5]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.4...v0.2.5
 [0.2.4]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.3...v0.2.4
 [0.2.3]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.2...v0.2.3
