@@ -15,16 +15,16 @@ Well we can't stop there, so there is also hover description for all the tags, s
 ## Preview
 
 - Syntax highlighting (using Dark+ theme):
-![highlight](https://github.com/Nicklas185105/Silverfin-Liquid/blob/master/resources/highlight.png)
+![highlight](https://github.com/Nicklas185105/Silverfin-Liquid/raw/master/resources/highlight.png)
 
 - Sidebar:
-![sidebar](https://github.com/Nicklas185105/Silverfin-Liquid/blob/master/resources/sidebar.png)
+![sidebar](https://github.com/Nicklas185105/Silverfin-Liquid/raw/master/resources/sidebar.png)
 
 - Code Snippet:
-![snippet](https://github.com/Nicklas185105/Silverfin-Liquid/blob/master/resources/snippet.png)
+![snippet](https://github.com/Nicklas185105/Silverfin-Liquid/raw/master/resources/snippet.png)
 
 - Hover description:
-![hover](https://github.com/Nicklas185105/Silverfin-Liquid/blob/master/resources/hover.png)
+![hover](https://github.com/Nicklas185105/Silverfin-Liquid/raw/master/resources/hover.png)
 
 ## Known Issue
 
