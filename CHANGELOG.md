@@ -6,23 +6,38 @@ All notable changes to the "silverfin-liquid" extension will be documented in th
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.2.8] - 2022-01-05
+
+## Added
+
+- Icon for the extension.
+- Clickable assign tags in side panel, will send you to the correct line in the correct file.
+
+## Changed
+
+- Icon for the side panel.
+
+## Fixed
+
+- Loading issue with the side panel
+
 ## [0.2.7] - 2021-12-23
 
 ### Fixed
 
-- Added mixing endic tag to warningtext snippets
+- Added mixing endic tag to warningtext snippets.
 
 ## [0.2.6] - 2021-12-22
 
 ### Added
 
 - Added translation snippet with only a default field.
-- Added indent snippet
-- Added warningtext snippets
-- Added infotext snippets
-- Added HTML table creation
-- Added all HTML table tags
-- Added all HTML table classes
+- Added indent snippet.
+- Added warningtext snippets.
+- Added infotext snippets.
+- Added HTML table creation.
+- Added all HTML table tags.
+- Added all HTML table classes.
 
 ## [0.2.5] - 2021-12-22
 
@@ -36,7 +51,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Added
 
 - Added _t at the end of the variable for translation snippet.
-- Added hover description for two tags.
+- Added hover description for two tags (assign, if).
 
 ### Changed
 
@@ -130,7 +145,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Initial release.
 - Added Syntax Highlighting.
 
-[0.2.7]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.6...HEAD
+[0.2.8]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.7...HEAD
+[0.2.7]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.6...v0.2.7
 [0.2.6]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.5...v0.2.6
 [0.2.5]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.4...v0.2.5
 [0.2.4]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.3...v0.2.4
