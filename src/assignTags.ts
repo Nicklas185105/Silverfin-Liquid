@@ -2,10 +2,10 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 
-export class AssignTagsProvider implements vscode.TreeDataProvider<Dependency> {
+export class AssignTagsProvider implements vscode.TreeDataProvider<TreeItem> {
 
-	private _onDidChangeTreeData: vscode.EventEmitter<Dependency | undefined | void> = new vscode.EventEmitter<Dependency | undefined | void>();
-	readonly onDidChangeTreeData: vscode.Event<Dependency | undefined | void> = this._onDidChangeTreeData.event;
+	private _onDidChangeTreeData: vscode.EventEmitter<TreeItem | undefined | void> = new vscode.EventEmitter<TreeItem | undefined | void>();
+	readonly onDidChangeTreeData: vscode.Event<TreeItem | undefined | void> = this._onDidChangeTreeData.event;
 
 	constructor(private workspaceRoot: string | undefined) {
 		if (workspaceRoot !== undefined) {
@@ -16,48 +16,54 @@ export class AssignTagsProvider implements vscode.TreeDataProvider<Dependency> {
 	}
 
 	private workspaceRootString!: string;
-	private re = new RegExp(`{%\\sassign\\s('|")?([\\[\\]\\-$\\w]+)('|")?\\s=\\s('|")?([\\{\\]\\-\\s\\.$\\w]+)('|")?\\s(\\|\\s(([\\w]+)+:('|")?([\\w\\s|]+)+('|")?)\\s)*%}`, 'g');
+	private re = new RegExp(/{%\sassign\s([\[\]\-$\w]+)\s=\s([\"\'\w\d\-\_]*)([\w\d\[\]\s\n\'\"\|\:\;\_\-\.\$\!\+æøåÆØÅ]*)?\s%}/gm);
+	private reReplace = new RegExp(/([\[\]\-$\w]+)\s=\s([\w\d\[\]\s\'\"\|\:\;\_\-\.\!\+æøåÆØÅ]*)\s%}([\w\s]+)?/gm);
+	private reMulti = new RegExp(/{%\sassign\s([\[\]\-$\w]+)\s=\s([\"\'\w\d\-\_]*)/gm);
+	private reMultiEnd = new RegExp(/([\w\d\[\]\s\n\'\"\|\:\;\_\-\.\$\!\+æøåÆØÅ]*)(%})/gm);
 
 	refresh(): void {
 		this._onDidChangeTreeData.fire();
 	}
 
-	getTreeItem(element: Dependency): vscode.TreeItem {
+	getTreeItem(element: TreeItem): vscode.TreeItem | Thenable<vscode.TreeItem> {
 		return element;
 	}
 
-	getChildren(element?: Dependency): Thenable<Dependency[]> {
+	getChildren(element?: TreeItem | undefined): vscode.ProviderResult<TreeItem[]> {
 		if (!this.workspaceRootString) {
-			vscode.window.showInformationMessage('No dependency in empty workspace');
+			vscode.window.showInformationMessage('No files in empty workspace');
 			return Promise.resolve([]);
 		}
 
-		if (element) {
-			return Promise.resolve(this.getDeps(this.workspaceRootString));
+		if (element === undefined) {
+			const test = this.readFiles(this.workspaceRootString);
+			return Promise.resolve(test);
 		} else {
-			const packageJsonPath = this.workspaceRootString;
-			if (this.pathExists(packageJsonPath)) {
-				const test = this.getDeps(packageJsonPath);
+			if (element.children === undefined) {
+				const test = this.readAssigns(element.path);
 				return Promise.resolve(test);
-			} else {
-				vscode.window.showInformationMessage('Workspace has no package.json');
-				return Promise.resolve([]);
 			}
+			return element.children;
 		}
 	}
 
-	private getDeps(dirPath: string): Dependency[] {
+	private readFiles(dirPath: string): TreeItem[] {
 		let files = fs.readdirSync(dirPath);
-		const toDep = (files: string[], dirPath: string): Dependency[] => {
+		const toDep = (files: string[], dirPath: string): TreeItem[] => {
 			let deps = new Array();
+
+			const dirPathArray = dirPath.split('\\');
+			deps.push(new TreeItem(dirPathArray[dirPathArray.length - 1], path.join(dirPath, dirPathArray[dirPathArray.length - 1]) + '.liquid', false, true, 0, 0, 0, undefined)); //this.readAssigns(path.join(dirPath, dirPathArray[dirPathArray.length - 1]) + '.liquid')
 
 			files.forEach(file => {
 				const filePath = path.join(dirPath, file);
 				if (fs.existsSync(filePath)) {
-					//readDirectory
-					this.readDirectory(file, filePath, file).forEach(dep => {
-						deps.push(dep);
-					});
+					// readDirectory
+					if (fs.lstatSync(filePath).isDirectory()) {
+						fs.readdirSync(filePath).forEach(dirFiles => {
+							deps.push(new TreeItem(dirFiles, path.join(filePath, dirFiles), false, true, 0, 0, 0, undefined)); //this.readAssigns(path.join(filePath, dirFiles))
+						});
+					}
 				}
 			});
 
@@ -69,82 +75,108 @@ export class AssignTagsProvider implements vscode.TreeDataProvider<Dependency> {
 		return deps;
 	}
 
-	private pathExists(p: string): boolean {
-		try {
-			fs.accessSync(p);
-		} catch (err) {
-			return false;
-		}
-
-		return true;
-	}
-
-	private readDirectory(file: string, filePath: string, rootPath: string): Dependency[] {
+	private readAssigns(filePath: string): TreeItem[] | undefined {
 		let deps = new Array();
 
-		if (fs.lstatSync(filePath).isDirectory()) {
-			fs.readdirSync(filePath).forEach(dirFiles => {
-				const dirFilePath = path.join(filePath, dirFiles);
-				if (fs.lstatSync(dirFilePath).isDirectory()) {
-					this.readDirectory(dirFiles, dirFilePath, path.join(file, dirFiles)).forEach(dep => {
-						deps.push(dep);
-					});
-				} else if (fs.lstatSync(dirFilePath).isFile() && dirFiles.includes('.liquid')) {
-					let lineCount = 0;
+		if (filePath.includes('.liquid')) {
+			let lineCount = 0;
 
-					const arr = fs.readFileSync(dirFilePath).toString().replace(/\r\n/g, '\n').split('\n');
+			const arr = fs.readFileSync(filePath).toString().split(/\r\n/g);
 
-					for (let line of arr) {
-						lineCount++;
+			let multiLine = false;
+			let lineMulti = "";
+			let multiLineCount = 0;
+			arr.forEach(line => {
+				lineCount++;
 
-						let reResult;
-						while ((reResult = this.re.exec(line)) !== null) {
-							const tagName = reResult[2];
-							deps.push(new Dependency(tagName, path.join(rootPath, dirFiles), lineCount.toString()));
+				let reResult = this.re.exec(line);
+				let reResultMulti = this.reMulti.exec(line);
+
+				if (!multiLine) {
+					if (reResult !== null) {
+						const tagName = reResult[1];
+						const colCountStart = line.replace(this.reReplace, "").length;
+						const colCountEnd = colCountStart + tagName.length;
+						deps.push(new TreeItem(tagName, filePath, true, false, lineCount, colCountStart, colCountEnd, undefined, 'Line: ' + lineCount, reResult[0]));
+					} else if (reResultMulti !== null) {
+						multiLine = true;
+						lineMulti += line;
+						multiLineCount = lineCount;
+					}
+				} else {
+					if (line.includes('%}')) {
+						reResult = this.reMultiEnd.exec(line);
+
+						if (reResult !== null) {
+							lineMulti += reResult[0];
+							reResult = this.re.exec(lineMulti);
+
+							if (reResult !== null) {
+								const tagName = reResult[1];
+								const colCountStart = lineMulti.replace(this.reReplace, "").length;
+								const colCountEnd = colCountStart + tagName.length;
+								deps.push(new TreeItem(tagName, filePath, true, false, multiLineCount, colCountStart, colCountEnd, undefined, 'Line: ' + multiLineCount, reResult[0]));
+							}
 						}
+						lineMulti = "";
+						multiLine = false;
+					} else {
+						lineMulti += line;
 					}
 				}
 			});
 		}
 
-		if (fs.lstatSync(filePath).isFile() && filePath.includes('.liquid')) {
-
-			let lineCount = 0;
-
-			const arr = fs.readFileSync(filePath).toString().replace(/\r\n/g, '\n').split('\n');
-
-			for (let line of arr) {
-				lineCount++;
-
-				let reResult;
-				while ((reResult = this.re.exec(line)) !== null) {
-					const tagName = reResult[2];
-					deps.push(new Dependency(tagName, file, lineCount.toString()));
-				}
-			}
-		}
-
-		return deps;
+		return deps.length > 0 ? deps : undefined;
 	}
 }
 
-export class Dependency extends vscode.TreeItem {
+export class TreeItem extends vscode.TreeItem {
+	children: TreeItem[] | undefined;
+	path: string;
+	lineCount: number;
+	colCountStart: number;
+	colCountEnd: number;
+	assign: boolean;
 
 	constructor(
-		public readonly label: string,
-		private readonly fileName: string,
-		private readonly line: string,
-		public readonly command?: vscode.Command
+		label: string,
+		path: string,
+		assign: boolean,
+		itemState: boolean,
+		lineCount: number,
+		colCountStart: number,
+		colCountEnd: number,
+		children?: TreeItem[],
+		description?: string,
+		tooltip?: string,
+		command?: vscode.Command
 	) {
-		super(label, vscode.TreeItemCollapsibleState.None);
-		this.tooltip = `${this.label} - ${this.fileName} - ${this.line}`;
-		this.description = `File: ${this.fileName} - Line: ${this.line}`;
+		super(
+			label,
+			itemState ? vscode.TreeItemCollapsibleState.Collapsed : vscode.TreeItemCollapsibleState.None,
+		);
+		this.children = children;
+		this.description = description;
+		this.tooltip = tooltip;
+		this.path = path;
+		this.lineCount = lineCount;
+		this.assign = assign;
+		this.colCountStart = colCountStart;
+		this.colCountEnd = colCountEnd;
+
+		this.command = this.assign ? {
+			title: "go To Line",
+			command: "vscode.open",
+			arguments: [
+				vscode.Uri.file(path),
+				{ selection: new vscode.Selection(new vscode.Position(lineCount - 1, colCountStart), new vscode.Position(lineCount - 1, colCountEnd)) }
+			]
+		} : undefined;
 	}
 
 	/*iconPath = {
 		light: path.join(__filename, '..', '..', 'resources', 'light', 'dependency.svg'),
 		dark: path.join(__filename, '..', '..', 'resources', 'dark', 'dependency.svg')
 	};*/
-
-	contextValue = 'dependency';
 }

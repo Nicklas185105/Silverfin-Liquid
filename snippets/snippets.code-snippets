@@ -799,5 +799,15 @@
 		"prefix": "usrindent",
 		"body": "usr-indent-${1:1-10}",
 		"description": "HTML create indentation in cell"
+	},
+	"HTML Repeated Header Class": {
+		"prefix": "usrrepeatedheader",
+		"body": "usr-repeated-header",
+		"description": "HTML for long tables, header well be repeated during pdf export"
+	},
+	"HTML No Left Padding": {
+		"prefix": "usrnoleftpadding",
+		"body": "usr-no-left-padding",
+		"description": "HTML removes default left padding"
 	}
 }
