@@ -77,7 +77,7 @@
 	"Set Translation Default": {
 		"prefix": "t=default",
 		"body": [
-			"{% t= \"${1:key}_t\" default:\"${1:translation}\""
+			"{% t= \"${1:key}_t\" default:\"${1:translation}\" %}"
 		],
 		"description": [
 			"To make sure that the content of the template is translated\nin different languages, you need to set translation by:\n",
@@ -142,7 +142,7 @@
 	},
 	"Date Format": {
 		"prefix": "format:",
-		"body": "format:\"${1:%Y\"",
+		"body": "format:\"${1:%Y}\"",
 		"description": [
 			"Customize how the date is displayed inside the input field using the 'format' attribute.\n",
 			"In the 'Date and Time' section there is a list of useful format types that can be applied."
@@ -230,7 +230,7 @@
 		"prefix": "else",
 		"body": [
 			"{% else %}",
-			"\t${1:}"
+			"\t${1:content}"
 		],
 		"description": [
 			"The else statement is used in combination with the if statement.\n",
@@ -241,7 +241,7 @@
 		"prefix": "elsif",
 		"body": [
 			"{% elsif ${1:var} %}",
-			"\t${2:}"
+			"\t${2:content}"
 		],
 		"description": [
 			"The elsif statement is used in combination with the if statement.\n",
@@ -252,7 +252,7 @@
 		"prefix": "ifi",
 		"body": [
 			"{% ifi ${1:var} %}",
-			"\t${2:}",
+			"\t${2:content}",
 			"{% endifi %}"
 		],
 		"description": [
@@ -268,7 +268,7 @@
 		"prefix": "unless",
 		"body": [
 			"{% unless ${1:var} %}",
-			"\t${2:}",
+			"\t${2:content}",
 			"{% endunless %}"
 		],
 		"description": [
@@ -286,9 +286,9 @@
 		"body": [
 			"{% case ${1:condition} %}",
 			"{% when ${2:case} %}",
-			"\t${3:}",
+			"\t${3:content}",
 			"{% else %}",
-			"\t${4:}",
+			"\t${4:content}",
 			"{% endcase %}"
 		],
 		"description": [
@@ -303,8 +303,8 @@
 	"Fori Loop": {
 		"prefix": "fori",
 		"body": [
-			"{% fori  ${1:item} in ${2:array} %}",
-			"\t${2:}",
+			"{% fori ${1:item} in ${2:array} %}",
+			"\t${3:content}",
 			"{% endfori %}"
 		],
 		"description": [
@@ -321,7 +321,7 @@
 		"prefix": "for",
 		"body": [
 			"{% for ${1:item} in ${2:array} %}",
-			"\t${3:}",
+			"\t${3:content}",
 			"{% endfor %}"
 		],
 		"description": [
@@ -369,9 +369,14 @@
 		"description": "Return a boolean checking if this is the last loop."
 	},
 	"Break": {
-		"prefix": "body",
+		"prefix": "break",
 		"body": "{% break %}",
 		"description": "Causes the loop to stop iterating when it encounters the break tag."
+	},
+	"Continue": {
+		"prefix": "continue",
+		"body": "{% continue %}",
+		"description": "Causes the loop to continue on the next iteration and skip the current."
 	},
 	"Limit": {
 		"prefix": "limit",
@@ -420,7 +425,7 @@
 	},
 	"Rollforward": {
 		"prefix": "rollforward",
-		"body": "{% rollforward ${1:last_year} ${2:this:year} %}",
+		"body": "{% rollforward ${1:last_year} ${2:this_year} %}",
 		"description": [
 			"Rollforward is used to copy data from a chosen period to a database variable in the current period.",
 			"This is done by pressing the copy data option under the action button in the Silverfin platform."
@@ -438,7 +443,7 @@
 		"prefix": "locale",
 		"body": [
 			"{% locale ${1:locale} %}",
-			"\t${2:}",
+			"\t${2:content}",
 			"{% endlocale %}"
 		],
 		"description": [
@@ -451,7 +456,7 @@
 	},
 	"Include": {
 		"prefix": "include",
-		"body": "{% include \"${1:parts}/${2:part_name}\" %}",
+		"body": "{% include \"${1:parts/shared}/${2:part_name}\" %}",
 		"description": [
 			"The code of reconciliation templates is stored in a main part and in 15 optional parts.",
 			"The main part is always loaded first, while the additional parts are only loaded when they are called."
@@ -492,7 +497,7 @@
 		"prefix": "adjustmentbutton",
 		"body": [
 			"{% adjustmentbutton text:\"${1:text}\" category:\"${2:text}\" %}",
-			"\t${3:}",
+			"\t${3:content}",
 			"{% endadjustmentbutton %}"
 		],
 		"description": "By using adjustment button tag you can create a button that would automatically make an adjustment, filled with values taken from Liquid logic."
@@ -523,7 +528,7 @@
 		"prefix": "addnewinputs",
 		"body": [
 			"{% addnewinputs %}",
-			"\t",
+			"\t${1:content}",
 			"{% endaddnewinputs %}"
 		],
 		"description": "We use an addnewinputs tag to allow user sorting information that was stored/added in the collection."
@@ -534,7 +539,7 @@
 	},
 	"Sign Marker": {
 		"prefix": "signmarker",
-		"body": "{% signmarker ${1:} %}",
+		"body": "{% signmarker ${1:parameters} %}",
 		"description": [
 			"The signmarker tag could be used to add the possibility to sign certain documents digitally.",
 			"To accomplish that, first you would need to add the signmarker tag in your code, close to where the actual signature would be located.",
@@ -579,7 +584,7 @@
 		"prefix": "stripnewlines",
 		"body": [
 			"{% stripnewlines %}",
-			"\t${1:}",
+			"\t${1:content}",
 			"{% endstripnewlines %}"
 		],
 		"description": [
@@ -597,7 +602,7 @@
 	},
 	"Indent": {
 		"prefix": "indent",
-		"body": "{:: indent level=\"${1:1-10}\"}${2:content}{:/indent}",
+		"body": "{::indent level=\"${1:1-10}\"}${2:content}{:/indent}",
 		"description": "An indentation or indent is a technique that is used to appoint paragraphs or other logical blocks in the code."
 	},
 	"Font Size": {
@@ -608,7 +613,7 @@
 	"Font Color": {
 		"prefix": "fontcolor",
 		"body": "<font color=\"${1:color in hex}\">${2:content}</font>",
-		"description": "Colours should be avoided in general apart from its use on the disabled titles where light grey can be applied (Hexadecimal code = “CCCCCC”)"
+		"description": "Colors should be avoided in general apart from its use on the disabled titles where light grey can be applied (Hexadecimal code = “CCCCCC”)"
 	},
 	"Info Text Inline": {
 		"prefix": "infotextinline",
@@ -681,7 +686,7 @@
 		"prefix": "tbody",
 		"body": [
 			"<tbody>",
-			"\t${1:content",
+			"\t${1:content}",
 			"</tbody>"
 		],
 		"description": "HTML body tag"

@@ -6,6 +6,16 @@ All notable changes to the "silverfin-liquid" extension will be documented in th
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.2.11] - 2022-06-12
+
+## Added
+
+- Snippet for Continue
+
+## Fixed
+
+- Fixed some snippet errors
+
 ## [0.2.10] - 2022-01-05
 
 ## Changed
@@ -157,6 +167,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Initial release.
 - Added Syntax Highlighting.
 
+[0.2.11]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.10...HEAD
 [0.2.10]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.9...HEAD
 [0.2.9]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.8...v0.2.9
 [0.2.8]: https://github.com/Nicklas185105/Silverfin-Liquid/compare/v0.2.7...v0.2.8
