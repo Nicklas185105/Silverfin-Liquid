@@ -95,7 +95,7 @@
 				},
 				{
 					"name": "constant.language.stl",
-					"match": "(false|true|nil)"
+					"match": "(false|true|blank)"
 				},
 				{
 					"captures": {
